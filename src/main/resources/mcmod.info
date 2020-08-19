@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tfcflux",
+  "name": "TFC Flux",
+  "description": "TFC Flux is a tech mod based on tfc.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Mrthomas20121"],
+  "credits": "Member of TFC for the help",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
