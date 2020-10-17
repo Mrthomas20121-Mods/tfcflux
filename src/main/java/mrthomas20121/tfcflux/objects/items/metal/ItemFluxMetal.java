@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import mrthomas20121.tfcflux.api.types.ItemMetalType;
+import mrthomas20121.tfcflux.api.type.ItemMetalType;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.minecraft.item.ItemStack;

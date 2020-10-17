@@ -1,47 +1,85 @@
 package mrthomas20121.tfcflux.objects.tiles;
 
+import net.dries007.tfc.objects.fluids.capability.FluidTankCallback;
+import net.dries007.tfc.objects.fluids.capability.IFluidHandlerSidedCallback;
+import net.dries007.tfc.objects.fluids.capability.IFluidTankCallback;
+import net.dries007.tfc.objects.te.TEInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class TeFluid extends TeBase {
+public class TeFluid extends TEInventory implements IFluidTankCallback, IFluidHandlerSidedCallback {
 
-    private FluidTank tank;
+    private FluidTankCallback tank;
 
-    public TeFluid(int capacity)
+    public TeFluid(int slots, int capacity, int tankID)
     {
-        this.tank = new FluidTank(capacity);
+        super(slots);
+        this.tank = new FluidTankCallback(this, tankID, capacity);
+        this.tank.setTileEntity(this);
     }
-    public TeFluid(int capacity, FluidStack fluidStack)
+    public TeFluid(int slots, int capacity, FluidStack fluidStack, int tankID)
     {
-        this.tank = new FluidTank(fluidStack, capacity);
+        super(slots);
+        this.tank = new FluidTankCallback(this, tankID, capacity);
+        this.tank.setFluid(fluidStack);
     }
-    public TeFluid()
+    public TeFluid(int slots, int capacity, Fluid fluid, int amount, int tankID)
     {
-        this.tank = new FluidTank(10000);
+        super(slots);
+        this.tank = new FluidTankCallback(this, tankID, capacity);
+        this.tank.setFluid(new FluidStack(fluid, amount));
+    }
+    public TeFluid(int slots, int tankID)
+    {
+        super(slots);
+        this.tank = new FluidTankCallback(this,tankID,10000);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
-    {
-        super.readFromNBT(tag);
-        tank.readFromNBT(tag);
+    public void setAndUpdateFluidTank(int fluidtankID) {
+        markForSync();
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tag)
+    public boolean canFill(FluidStack resource, EnumFacing enumFacing) {
+        return resource.getFluid() == null;
+    }
+
+    @Override
+    public boolean canDrain(EnumFacing enumFacing) {
+        return (enumFacing == EnumFacing.UP || enumFacing != EnumFacing.DOWN);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        tag = super.writeToNBT(tag);
-        tank.writeToNBT(tag);
-        return tag;
+        super.readFromNBT(nbt);
+        tank.readFromNBT(nbt.getCompoundTag("tank"));
+        if (tank.getFluidAmount() > tank.getCapacity())
+        {
+            FluidStack fluidStack = tank.getFluid();
+            if (fluidStack != null)
+            {
+                fluidStack.amount = tank.getCapacity();
+            }
+            tank.setFluid(fluidStack);
+        }
+    }
+
+    @Nonnull
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+        nbt.setTag("tank", tank.writeToNBT(new NBTTagCompound()));
+        return super.writeToNBT(nbt);
     }
 
     @ParametersAreNonnullByDefault
@@ -53,6 +91,7 @@ public class TeFluid extends TeBase {
         return super.hasCapability(capability, facing);
     }
     @ParametersAreNonnullByDefault
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {

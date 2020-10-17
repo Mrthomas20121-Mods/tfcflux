@@ -1,6 +1,8 @@
 package mrthomas20121.tfcflux.objects.tiles;
 
 import mrthomas20121.tfcflux.objects.common.EnergyContainer;
+import net.dries007.tfc.objects.te.ITileFields;
+import net.dries007.tfc.objects.te.TEInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -16,17 +18,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @SuppressWarnings("WeakerAccess")
 @ParametersAreNonnullByDefault
-public class TeEnergy extends TeBase {
+public class TeEnergy extends TEInventory implements ITileFields {
 
-    public static final int SIZE = 9;
-    private EnergyContainer energyContainer;
+    private final EnergyContainer energyContainer;
 
-    public TeEnergy()
+    public TeEnergy(int nbSlots)
     {
+        super(nbSlots);
         energyContainer = new EnergyContainer(10000, 10000, 0);
     }
-    public TeEnergy(int capacity)
+    public TeEnergy(int nbSlots, int capacity)
     {
+        super(nbSlots);
         energyContainer = new EnergyContainer(capacity, capacity, 0);
     }
 
@@ -38,6 +41,7 @@ public class TeEnergy extends TeBase {
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setTag("inventory", inventory.serializeNBT());
         super.writeToNBT(compound);
         return compound;
     }
@@ -53,6 +57,7 @@ public class TeEnergy extends TeBase {
     }
 
     @ParametersAreNonnullByDefault
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
@@ -62,5 +67,35 @@ public class TeEnergy extends TeBase {
         return super.getCapability(capability, facing);
     }
 
+    @Override
+    public void setField(int index, int value) {
+        if(index == 0)
+        {
+            this.energyContainer.setEnergy(value);
+        }
+    }
 
+    @Override
+    public int getField(int index) {
+        if(index == 0)
+        {
+            return this.getEnergyStored();
+        }
+        return 0;
+    }
+
+    public int getEnergyCap()
+    {
+        return energyContainer.getMaxEnergyStored();
+    }
+
+    public int getEnergyStored()
+    {
+        return energyContainer.getEnergyStored();
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 1;
+    }
 }

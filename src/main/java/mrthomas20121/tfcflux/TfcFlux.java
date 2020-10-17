@@ -1,6 +1,7 @@
 package mrthomas20121.tfcflux;
 
 import mrthomas20121.tfcflux.proxy.CommonProxy;
+import mrthomas20121.tfcflux.types.DefaultFluids;
 import mrthomas20121.tfcflux.registry.Registry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -33,6 +34,7 @@ public class TfcFlux
     {
         logger = event.getModLog();
         proxy.preInit(event);
+        DefaultFluids.preInit();
         Registry.preInit();
     }
 

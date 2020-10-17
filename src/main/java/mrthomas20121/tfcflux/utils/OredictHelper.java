@@ -1,6 +1,6 @@
 package mrthomas20121.tfcflux.utils;
 
-import mrthomas20121.tfcflux.api.types.ItemMetalType;
+import mrthomas20121.tfcflux.api.type.ItemMetalType;
 import mrthomas20121.tfcflux.objects.items.metal.ItemFluxMetal;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.items.ItemTFC;

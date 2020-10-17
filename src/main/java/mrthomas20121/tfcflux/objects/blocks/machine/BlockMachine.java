@@ -1,8 +1,7 @@
 package mrthomas20121.tfcflux.objects.blocks.machine;
 
 import mrthomas20121.tfcflux.TfcFlux;
-import mrthomas20121.tfcflux.objects.tiles.CrusherTe;
-import mrthomas20121.tfcflux.objects.tiles.TeEnergy;
+import mrthomas20121.tfcflux.objects.tiles.machines.CrusherTe;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;

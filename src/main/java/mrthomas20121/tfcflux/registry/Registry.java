@@ -1,14 +1,15 @@
 package mrthomas20121.tfcflux.registry;
 
 import mrthomas20121.tfcflux.TfcFlux;
-import mrthomas20121.tfcflux.api.types.CrushedType;
-import mrthomas20121.tfcflux.api.types.ItemMetalType;
+import mrthomas20121.tfcflux.api.type.CrushedType;
+import mrthomas20121.tfcflux.api.type.Dust;
+import mrthomas20121.tfcflux.api.type.ItemMetalType;
 import mrthomas20121.tfcflux.objects.blocks.machine.BlockSteamCrusher;
 import mrthomas20121.tfcflux.objects.items.block.ItemBlockFlux;
 import mrthomas20121.tfcflux.objects.blocks.machine.BlockMachine;
+import mrthomas20121.tfcflux.objects.items.dust.ItemDust;
 import mrthomas20121.tfcflux.objects.items.ore.ItemDustOre;
-import mrthomas20121.tfcflux.objects.tiles.CrusherTe;
-import mrthomas20121.tfcflux.objects.tiles.TeBase;
+import mrthomas20121.tfcflux.objects.tiles.machines.CrusherTe;
 import mrthomas20121.tfcflux.objects.tiles.TeEnergy;
 import mrthomas20121.tfcflux.objects.items.metal.*;
 import mrthomas20121.tfcflux.objects.tiles.TeFluid;
@@ -18,7 +19,6 @@ import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Ore;
-import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.dries007.tfc.objects.inventory.ingredient.IIngredient;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.dries007.tfc.objects.items.metal.ItemMetal;
@@ -36,8 +36,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
@@ -64,9 +62,6 @@ public class Registry
 
     public static void preInit()
     {
-        Fluid steam = new Fluid("steam", new ResourceLocation("tfc", "blocks/fluid_still"), new ResourceLocation("tfc", "blocks/fluid_flow"), 0xD0DDD2);
-        FluidRegistry.registerFluid(steam);
-        FluidRegistry.addBucketForFluid(steam);
     }
 
     @SubscribeEvent
@@ -174,6 +169,11 @@ public class Registry
                 }
             }
         }
+        for(Dust dust : Dust.values())
+        {
+            registerDust(r, dust);
+        }
+
         for(Block block: blocks)
         {
             ItemBlockFlux item = new ItemBlockFlux(block, block.getRegistryName());
@@ -193,7 +193,6 @@ public class Registry
         // te
         registerTe(CrusherTe.class, crusher.getLocalizedName());
         registerTe(TeEnergy.class, "teEnergy");
-        registerTe(TeBase.class, "teBase");
         registerTe(TeFluid.class, "teFluid");
     }
 
@@ -232,6 +231,13 @@ public class Registry
         OredictHelper.registerMetal(cap(itemTFC.getMetal().getRegistryName().getPath()), item);
         metalItems.add(itemTFC);
         return itemTFC;
+    }
+
+    private static ItemDust registerDust(IForgeRegistry<Item> r, Dust dust)
+    {
+        ItemDust itemDust = new ItemDust(dust);
+        r.register(itemDust);
+        return itemDust;
     }
 
     private static ItemTFC register(IForgeRegistry<Item> r, String name, ItemTFC item, CreativeTabs ct, String oredict)

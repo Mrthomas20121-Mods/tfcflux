@@ -1,8 +1,6 @@
 package mrthomas20121.tfcflux.proxy;
 
 import mrthomas20121.tfcflux.TfcFlux;
-import mrthomas20121.tfcflux.api.types.ItemMetalType;
-import mrthomas20121.tfcflux.objects.blocks.machine.BlockMachine;
 import mrthomas20121.tfcflux.objects.items.metal.ItemFluxMetal;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.objects.items.ItemTFC;

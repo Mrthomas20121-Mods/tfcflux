@@ -1,6 +1,6 @@
 package mrthomas20121.tfcflux.objects.items.metal;
 
-import mrthomas20121.tfcflux.api.types.CrushedType;
+import mrthomas20121.tfcflux.api.type.CrushedType;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.Ore;
@@ -9,10 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ItemOreCrushed extends ItemTFC {
 
