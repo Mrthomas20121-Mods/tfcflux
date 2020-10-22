@@ -1,6 +1,7 @@
 package mrthomas20121.tfcflux.objects.blocks.machine;
 
 import mrthomas20121.tfcflux.TfcFlux;
+import mrthomas20121.tfcflux.api.type.Machine;
 import mrthomas20121.tfcflux.objects.tiles.machines.CrusherTe;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -29,12 +30,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockMachine extends Block implements ITileEntityProvider, IItemSize {
 
-    public int GUI_ID;
     public static PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public BlockMachine(Material material, int gui_id) {
+    public BlockMachine(Material material) {
         super(material == null ? Material.IRON : material );
-        GUI_ID = gui_id;
     }
     @SideOnly(Side.CLIENT)
     public void initModel() {
@@ -64,7 +63,7 @@ public class BlockMachine extends Block implements ITileEntityProvider, IItemSiz
         if (!(te instanceof CrusherTe)) {
             return false;
         }
-        player.openGui(TfcFlux.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(TfcFlux.instance, Machine.CRUSHER.getId(), world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
     @Nonnull

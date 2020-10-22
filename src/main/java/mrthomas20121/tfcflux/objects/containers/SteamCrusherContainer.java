@@ -1,16 +1,16 @@
 package mrthomas20121.tfcflux.objects.containers;
 
-import mrthomas20121.tfcflux.objects.tiles.machines.CrusherTe;
+import mrthomas20121.tfcflux.objects.tiles.steam_machines.SteamCrusherTe;
 import net.dries007.tfc.objects.container.ContainerTE;
 import net.dries007.tfc.objects.inventory.slot.SlotCallback;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrusherContainer extends ContainerTE<CrusherTe>
+public class SteamCrusherContainer extends ContainerTE<SteamCrusherTe>
 {
 
-    public CrusherContainer(InventoryPlayer playerInventory, CrusherTe te) {
+    public SteamCrusherContainer(InventoryPlayer playerInventory, SteamCrusherTe te) {
         super(playerInventory, te);
 
     }

@@ -6,6 +6,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class SteamCrusherTe extends TeFluid {
     public SteamCrusherTe()
     {
-        super(2, 7000, FluidRegistry.getFluid("steam"), 0, 0);
+        super(3, 7000, FluidRegistry.getFluid("steam"), 0, 0);
     }
 }

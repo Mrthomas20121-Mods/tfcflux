@@ -13,6 +13,7 @@ import mrthomas20121.tfcflux.objects.tiles.machines.CrusherTe;
 import mrthomas20121.tfcflux.objects.tiles.TeEnergy;
 import mrthomas20121.tfcflux.objects.items.metal.*;
 import mrthomas20121.tfcflux.objects.tiles.TeFluid;
+import mrthomas20121.tfcflux.objects.tiles.steam_machines.SteamCrusherTe;
 import mrthomas20121.tfcflux.utils.OredictHelper;
 import net.dries007.tfc.api.recipes.WeldingRecipe;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
@@ -57,8 +58,8 @@ public class Registry
     public static ArrayList<ItemFluxMetal> metalItems = new ArrayList<>();
     public static ArrayList<Block> blocks = new ArrayList<>();
 
-    public static BlockMachine crusher = register("machine/crusher", new BlockMachine(Material.ROCK, 1), CT_Machines);
-    public static BlockSteamCrusher steamCrusher = register("machine/steam_crusher", new BlockSteamCrusher(Material.ROCK, 2), CT_Machines);
+    public static BlockMachine crusher = register("machine/crusher", new BlockMachine(Material.ROCK), CT_Machines);
+    public static BlockSteamCrusher steamCrusher = register("machine/steam_crusher", new BlockSteamCrusher(Material.ROCK), CT_Machines);
 
     public static void preInit()
     {
@@ -82,6 +83,7 @@ public class Registry
         }
     }
 
+    @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void onRegisterAnvilRecipeEvent(RegistryEvent.Register<AnvilRecipe> event)
     {
@@ -192,6 +194,7 @@ public class Registry
 
         // te
         registerTe(CrusherTe.class, crusher.getLocalizedName());
+        registerTe(SteamCrusherTe.class, steamCrusher.getLocalizedName());
         registerTe(TeEnergy.class, "teEnergy");
         registerTe(TeFluid.class, "teFluid");
     }

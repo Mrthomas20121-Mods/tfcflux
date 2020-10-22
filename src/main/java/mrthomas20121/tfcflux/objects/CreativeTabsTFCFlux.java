@@ -15,8 +15,8 @@ import static mrthomas20121.tfcflux.TfcFlux.MODID;
 
 public final class CreativeTabsTFCFlux
 {
-    public static final CreativeTabs CT_Metals = new TFCFluxCreativeTab("metal", "tfcflux:metal/powder/lead");
-    public static final CreativeTabs CT_Machines = new TFCFluxCreativeTab("machines", "tfcflux:metal/powder/lead");
+    public static final CreativeTabs CT_Metals = new TFCFluxCreativeTab("metal", "tfcflux:metal/plate/lead");
+    public static final CreativeTabs CT_Machines = new TFCFluxCreativeTab("machines", "tfcflux:metal/double_plate/lead");
 
     private static class TFCFluxCreativeTab extends CreativeTabs
     {
