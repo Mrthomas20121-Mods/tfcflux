@@ -1,0 +1,7 @@
+block.tfcflux_core.metal.full.name=%s Block
+block.tfcflux_core.metal.casing.name=%s Casing
+block.tfcflux_core.metal.hardened_glass.name=%s Hardened Glass
+
+item.tfcflux_core.metal.plate.name=%s Plate
+item.tfcflux_core.metal.double_plate.name=%s Double Plate
+item.tfcflux_core.metal.wrench.name=%s Wrench
