@@ -41,6 +41,9 @@ public class ItemFluxMetal extends ItemTFC implements IMetalItem
         if(type == ItemMetalType.WRENCH) {
             return new ItemFluxMetalTool(metal, type);
         }
+        else if(type == ItemMetalType.BATTERY) {
+            return new ItemBattery(metal, type);
+        }
         return new ItemFluxMetal(metal, type);
     }
 
@@ -130,7 +133,8 @@ public class ItemFluxMetal extends ItemTFC implements IMetalItem
     public enum ItemMetalType {
         PLATE(100),
         DOUBLE_PLATE(200),
-        WRENCH(300);
+        WRENCH(300),
+        BATTERY(400);
 
         private int smeltAmount;
         ItemMetalType(int smelt)

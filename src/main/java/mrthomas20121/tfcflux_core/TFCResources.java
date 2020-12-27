@@ -1,6 +1,8 @@
 package mrthomas20121.tfcflux_core;
 
 import mrthomas20121.rocksalt.utils.TFCUtils;
+import mrthomas20121.tfcflux_core.objects.ArmorMaterialsFlux;
+import mrthomas20121.tfcflux_core.objects.ToolMaterialsFlux;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.recipes.AlloyRecipe;
 import net.dries007.tfc.api.registries.TFCRegistryEvent;
@@ -27,19 +29,28 @@ public class TFCResources {
     public static ResourceLocation ferrochrome = new ResourceLocation(TerraFirmaCraft.MOD_ID,"ferrochrome"); // 50-70% chromium + 30% iron
     public static ResourceLocation cadmium = new ResourceLocation(TerraFirmaCraft.MOD_ID, "cadmium");
     public static ResourceLocation nichrome = new ResourceLocation(TerraFirmaCraft.MOD_ID, "nichrome");
+    public static ResourceLocation alnico = new ResourceLocation(TerraFirmaCraft.MOD_ID, "alnico");
+    public static ResourceLocation vanadium = new ResourceLocation(TerraFirmaCraft.MOD_ID, "vanadium");
+    public static ResourceLocation rhodium = new ResourceLocation(TerraFirmaCraft.MOD_ID, "rhodium");
+    public static ResourceLocation palladium = new ResourceLocation(TerraFirmaCraft.MOD_ID, "palladium");
 
     @SubscribeEvent
     public static void registerMetals(TFCRegistryEvent.RegisterPreBlock<Metal> event) {
         IForgeRegistry<Metal> r = event.getRegistry();
         r.registerAll(
-                new Metal(chromium, Metal.Tier.TIER_III, true, 0.5f, 1900f, 0xAF7CAA, null, null),
+                new Metal(chromium, Metal.Tier.TIER_III, true, 0.5f, 1900f, 0xAF7CAA, ToolMaterialsFlux.chromium, ArmorMaterialsFlux.chromium),
                 new Metal(kanthal, Metal.Tier.TIER_III, true, 0.35f, 1500f, 0xAD9CAB, null, null),
                 new Metal(solder, Metal.Tier.TIER_VI, true, 0.35f, 2000f, 0xA19A99, null, null),
-                new Metal(aluminium_steel, Metal.Tier.TIER_VI, true, 0.35f, 1540f, 0x8FA5A6, null, null),
+                new Metal(aluminium_steel, Metal.Tier.TIER_VI, true, 0.35f, 1540f, 0x8FA5A6, ToolMaterialsFlux.aluminium_steel, ArmorMaterialsFlux.aluminium_steel),
                 new Metal(weak_aluminium_steel, Metal.Tier.TIER_VI, false, 0.35f, 1540f, 0x8FA5A6, null, null),
+                new Metal(bismuth_steel, Metal.Tier.TIER_VI, true, 0.35f, 1540f, 0x32505A, ToolMaterialsFlux.bismuth_steel, ArmorMaterialsFlux.bismuth_steel),
+                new Metal(damascus_steel, Metal.Tier.TIER_VI, true, 0.35f, 1540f, 0x9B8E85, ToolMaterialsFlux.damascus_steel, ArmorMaterialsFlux.damascus_steel),
+                new Metal(stainless_steel, Metal.Tier.TIER_VI, true, 0.35f, 1540f, 0x9B8E85, null, null),
+                new Metal(rose_alloy, Metal.Tier.TIER_VI, true, 0.35f, 98f, 0x9B8E85, null, null),
                 new Metal(ferrochrome, Metal.Tier.TIER_VI, true, 0.35f, 2800f, 0x4A4A64, null, null),
                 new Metal(cadmium, Metal.Tier.TIER_VI, true, 0.35f, 1000f, 0x5C5C5E, null, null),
-                new Metal(nichrome, Metal.Tier.TIER_VI, true, 0.35f, 1400f, 0x77898E, null, null));
+                new Metal(nichrome, Metal.Tier.TIER_VI, true, 0.35f, 1400f, 0x77898E, null, null),
+                new Metal(alnico, Metal.Tier.TIER_III, false, 0.35f, 1540f, 0x9B8E85, null, null));
     }
 
     @SubscribeEvent
