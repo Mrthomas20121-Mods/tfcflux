@@ -55,7 +55,7 @@ public class DefaultRecipes {
             if(metal != Metal.UNKNOWN)
             {
                 String name = metal.getRegistryName().getPath();
-                IIngredient<ItemStack> stackIIngredient = IIngredient.of("plate"+DefaultRegistry.cap(name));
+                //IIngredient<ItemStack> stackIIngredient = IIngredient.of("plate"+DefaultRegistry.cap(name));
 
                 //r.register(new WeldingRecipe(new ResourceLocation(TfcFluxMachine.MODID, "double_plate_"+name), stackIIngredient, stackIIngredient, ItemFluxMetal.get(metal, ItemMetalType.DOUBLE_PLATE, 1), metal.getTier()));
             }

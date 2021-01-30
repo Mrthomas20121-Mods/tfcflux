@@ -59,6 +59,8 @@ public class FluxCoreRegistry {
                 }
             }
         }
+        Metal vanadium = TFCRegistries.METALS.getValue(TFCResources.vanadium);
+        items.add(register(r, ItemFluxMetal.create(vanadium, ItemFluxMetal.ItemMetalType.BATTERY), "metal/battery/" + vanadium.getRegistryName().getPath()));
 
         for(Block block: blocks) {
             r.register(new ItemBlockMetal(block).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey()));

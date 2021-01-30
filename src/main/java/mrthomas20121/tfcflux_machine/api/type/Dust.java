@@ -1,7 +1,11 @@
 package mrthomas20121.tfcflux_machine.api.type;
 
-import mrthomas20121.rocksalt.utils.FluidUtils;
-import net.dries007.tfc.objects.fluids.properties.FluidWrapper;
+import net.dries007.tfc.api.capability.food.FoodStatsTFC;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
+import net.dries007.tfc.objects.fluids.properties.DrinkableProperty;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public enum Dust {
     ROSE_SALT(0xD27A85,true),
@@ -24,8 +28,18 @@ public enum Dust {
         return fluid;
     }
 
-    public FluidWrapper generateFluid()
+    public Fluid generateFluid()
     {
-        return FluidUtils.registerLiquid(this.name().toLowerCase(),this.color);
+        final ResourceLocation STILL = new ResourceLocation("tfc", "blocks/fluid_still");
+        final ResourceLocation FLOW = new ResourceLocation("tfc", "blocks/fluid_flow");
+        Fluid fluid = new Fluid(this.name().toLowerCase(), STILL, FLOW, this.color);
+        FluidRegistry.registerFluid(fluid);
+        FluidRegistry.addBucketForFluid(fluid);
+        FluidsTFC.getWrapper(fluid).with(DrinkableProperty.DRINKABLE, (player) -> {
+            if (player.getFoodStats() instanceof FoodStatsTFC) {
+                ((FoodStatsTFC)player.getFoodStats()).addThirst(40.0F);
+            }
+        });
+        return fluid;
     }
 }

@@ -50,7 +50,8 @@ public class TFCResources {
                 new Metal(ferrochrome, Metal.Tier.TIER_VI, true, 0.35f, 2800f, 0x4A4A64, null, null),
                 new Metal(cadmium, Metal.Tier.TIER_VI, true, 0.35f, 1000f, 0x5C5C5E, null, null),
                 new Metal(nichrome, Metal.Tier.TIER_VI, true, 0.35f, 1400f, 0x77898E, null, null),
-                new Metal(alnico, Metal.Tier.TIER_III, false, 0.35f, 1540f, 0x9B8E85, null, null));
+                new Metal(alnico, Metal.Tier.TIER_VI, false, 0.35f, 1540f, 0x9B8E85, null, null),
+                new Metal(vanadium, Metal.Tier.TIER_VI, false, 0.35f, 1910f, 0x5C5677, null, null));
     }
 
     @SubscribeEvent
