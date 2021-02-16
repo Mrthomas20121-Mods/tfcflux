@@ -5,6 +5,7 @@ import mrthomas20121.tfcflux_machine.TfcFluxMachine;
 import mrthomas20121.tfcflux_machine.objects.blocks.tech.pump.BlockPump;
 import mrthomas20121.tfcflux_machine.objects.tiles.TilePump;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
+import net.dries007.tfc.objects.te.TETickableBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -50,7 +51,7 @@ public class FluxBlocks {
 
     public static Block register(IForgeRegistry<Block> r, Block block, String name) {
         block.setRegistryName(TfcFluxMachine.MODID, name);
-        block.setTranslationKey(TfcFluxMachine.MODID+name.replace("/", "."));
+        block.setTranslationKey(TfcFluxMachine.MODID+"_"+name.replace("/", "."));
         block.setCreativeTab(CreativeTabsTFCFlux.CT_Machines);
         r.register(block);
         return block;

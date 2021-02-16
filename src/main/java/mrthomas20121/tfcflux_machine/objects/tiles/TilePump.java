@@ -1,5 +1,6 @@
 package mrthomas20121.tfcflux_machine.objects.tiles;
 
+import net.dries007.tfc.objects.fluids.capability.FluidHandlerSided;
 import net.dries007.tfc.objects.fluids.capability.FluidTankCallback;
 import net.dries007.tfc.objects.fluids.capability.IFluidHandlerSidedCallback;
 import net.dries007.tfc.objects.fluids.capability.IFluidTankCallback;
@@ -15,7 +16,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TilePump extends TETickableBase implements IFluidTankCallback, IFluidHandlerSidedCallback {
 
@@ -30,25 +30,6 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
         tank.readFromNBT(nbt.getCompoundTag("tank"));
     }
 
-    @ParametersAreNonnullByDefault
-    @Override
-    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
-
-    @ParametersAreNonnullByDefault
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return (T)tank;
-        }
-        return super.getCapability(capability, facing);
-    }
-
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
@@ -58,8 +39,25 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
     }
 
     @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+        {
+            return (T) new FluidHandlerSided(this, tank, facing);
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
     public void setAndUpdateFluidTank(int fluidtankID) {
-        markForSync();
+        markForBlockUpdate();
     }
 
     @Override
@@ -76,10 +74,9 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
     public void update() {
         super.update();
         IBlockState stateDown = this.getBlockState(this.pos.down());
-        if(isValidFluidBlock(stateDown)) {
+        if(isValidFluidBlock(stateDown) && tank.getFluidAmount() < tank.getCapacity()) {
             IFluidBlock blockFluid = getFluidBlock(stateDown);
             if(blockFluid != null) this.modifyFluidStored(blockFluid);
-
         }
     }
 
@@ -100,7 +97,7 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
     private IBlockState getBlockState(BlockPos pos) {
         return this.world.getBlockState(pos);
     }
-    
+
     private IBlockState getBlockState() {
         return this.world.getBlockState(pos);
     }

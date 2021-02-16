@@ -14,6 +14,9 @@ public class Multiblocks {
                 .match(new BlockPos(0, 1, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
                 .match(new BlockPos(1, 1, 0), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
                 .match(new BlockPos(1, 0, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
-                .match(new BlockPos(1, 1, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS);
+                .match(new BlockPos(1, 1, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
+                .match(new BlockPos(2, 1, 0), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
+                .match(new BlockPos(2, 0, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS)
+                .match(new BlockPos(2, 1, 1), state -> state.getBlock() == BlocksTFC.FIRE_BRICKS);
     }
 }
