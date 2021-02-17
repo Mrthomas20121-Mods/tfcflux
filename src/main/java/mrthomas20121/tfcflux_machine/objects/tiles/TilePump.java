@@ -16,11 +16,13 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class TilePump extends TETickableBase implements IFluidTankCallback, IFluidHandlerSidedCallback {
 
     private static final int time = 40;
     private static final int genRate = 100*time;
+    private final Random rand = new Random();
 
     protected FluidTankCallback tank = new FluidTankCallback(this, 10, 10000);
 
@@ -76,7 +78,7 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
         IBlockState stateDown = this.getBlockState(this.pos.down());
         if(isValidFluidBlock(stateDown) && tank.getFluidAmount() < tank.getCapacity()) {
             IFluidBlock blockFluid = getFluidBlock(stateDown);
-            if(blockFluid != null) this.modifyFluidStored(blockFluid);
+            if(blockFluid != null && this.rand.nextFloat() > 0.5f) this.modifyFluidStored(blockFluid);
         }
     }
 

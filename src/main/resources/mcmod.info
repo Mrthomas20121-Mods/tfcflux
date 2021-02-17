@@ -1,6 +1,6 @@
 [
 {
-  "modid": "tfcflux",
+  "modid": "tfcflux_core",
   "name": "TFC Flux",
   "description": "TFC Flux is a tech mod based on tfc.",
   "version": "${version}",

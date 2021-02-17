@@ -7,13 +7,18 @@ import mrthomas20121.tfcflux_machine.objects.tiles.TilePump;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
 import net.dries007.tfc.objects.te.TETickableBase;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
@@ -49,9 +54,17 @@ public class FluxBlocks {
         TileEntity.register("tfcflux_machine:pump", TilePump.class);
     }
 
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void registerModels(ModelRegistryEvent event) {
+        for(Block block: blocks) {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "normal"));
+        }
+    }
+
     public static Block register(IForgeRegistry<Block> r, Block block, String name) {
         block.setRegistryName(TfcFluxMachine.MODID, name);
-        block.setTranslationKey(TfcFluxMachine.MODID+"_"+name.replace("/", "."));
+        block.setTranslationKey(TfcFluxMachine.MODID+"."+name.replace("/", "."));
         block.setCreativeTab(CreativeTabsTFCFlux.CT_Machines);
         r.register(block);
         return block;
