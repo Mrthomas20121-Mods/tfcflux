@@ -9,28 +9,6 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-repositories {
-    maven {
-        url = "https://www.cursemaven.com"
-    }
-    maven {
-        name "Craftweaker"
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        name "slimeknight maven"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven { // TOP
-        name 'tterrag maven'
-        url "http://maven.tterrag.com/"
-    }
-    maven {
-        name = "CoFH maven"
-        url = "http://maven.covers1624.net"
-    }
-}
-
 version = "1.0.0"
 group = "mrthomas20121.tfcflux"
 archivesBaseName = "tfcflux"
@@ -41,6 +19,21 @@ minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
     mappings = "stable_39"
+}
+
+repositories {
+    maven {
+        url = "https://www.cursemaven.com/"
+    }
+    maven { // crafttweaker
+        url "https://maven.blamejared.com"
+    }
+    maven { // tinker and jei maven
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven { // TOP
+        url "http://maven.tterrag.com/"
+    }
 }
 
 dependencies {
