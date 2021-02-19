@@ -37,14 +37,15 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.291"
-    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.618"
-    deobfCompile "com.blamejared:MTLib:3.0.4.8"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
-    deobfCompile "curse.maven:tfcraft:3205215"
-    deobfCompile "curse.maven:tfc-metallum:3062588"
-    deobfCompile "curse.maven:tfctech-unofficial:3209033"
-    deobfCompile "curse.maven:rocksalt:3094298"
+    compile "mezz.jei:jei_1.12.2:4.15.0.291"
+    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.618"
+    compile "com.blamejared:MTLib:3.0.4.8"
+    compile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
+    compile fileTree(include: ["*.jar"], dir: "libs")
+    //deobfCompile "curse.maven:tfcraft:3205215"
+    //deobfCompile "curse.maven:tfc-metallum:3062588"
+    //deobfCompile "curse.maven:tfctech-unofficial:3209033"
+    //deobfCompile "curse.maven:rocksalt:3094298"
 }
 
 processResources {

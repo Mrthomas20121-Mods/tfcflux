@@ -23,7 +23,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
 
-
 @Mod.EventBusSubscriber(modid = TfcFluxMachine.MODID)
 public class FluxBlocks {
 
