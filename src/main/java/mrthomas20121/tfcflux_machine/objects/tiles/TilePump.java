@@ -69,7 +69,7 @@ public class TilePump extends TETickableBase implements IFluidTankCallback, IFlu
 
     @Override
     public boolean canDrain(EnumFacing enumFacing) {
-        return true;
+        return false;
     }
 
     @Override
