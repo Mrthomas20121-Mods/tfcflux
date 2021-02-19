@@ -10,9 +10,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 repositories {
-    maven { // The repo from which to get waila
-        name "Mobius Repo"
-        url "http://tehnut.info/maven"
+    maven {
+        url = "https://www.cursemaven.com"
     }
     maven {
         name "Craftweaker"
@@ -22,15 +21,12 @@ repositories {
         name "slimeknight maven"
         url "http://dvs1.progwml6.com/files/maven"
     }
-    maven { // IntWheel
-        url "http://maven.k-4u.nl"
-    }
     maven { // TOP
         name 'tterrag maven'
         url "http://maven.tterrag.com/"
     }
     maven {
-        name = "CoFH Maven"
+        name = "CoFH maven"
         url = "http://maven.covers1624.net"
     }
 }
@@ -39,24 +35,23 @@ version = "1.0.0"
 group = "mrthomas20121.tfcflux"
 archivesBaseName = "tfcflux"
 
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
-
     mappings = "stable_39"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
 dependencies {
-    compile "mezz.jei:jei_1.12.2:4.15.0.291"
-    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.618"
-    compile "com.blamejared:MTLib:3.0.4.8"
-	compile files("./libs/TerraFirmaCraft-MC1.12-1.3.2.147-deobf.jar")
+    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.291"
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.618"
+    deobfCompile "com.blamejared:MTLib:3.0.4.8"
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
+    deobfCompile "curse.maven:tfcraft:3205215"
+    deobfCompile "curse.maven:tfc-metallum:3062588"
+    deobfCompile "curse.maven:tfctech-unofficial:3209033"
+    deobfCompile "curse.maven:rocksalt:3094298"
 }
 
 processResources {
