@@ -1,2 +1,9 @@
-#blocks
+# blocks
 tile.tfcflux_machine.machine.pump.name=Pump
+tile.tfcflux_machine.machine.vaporisator.name=Vaporisator
+
+# fluids
+fluid.steam=Steam
+fluid.red_salt=Red Salt
+fluid.rose_salt=Rose Salt
+fluid.black_salt=Black Salt

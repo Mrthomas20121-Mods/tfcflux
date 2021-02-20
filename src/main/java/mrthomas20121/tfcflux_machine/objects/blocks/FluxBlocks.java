@@ -2,14 +2,14 @@ package mrthomas20121.tfcflux_machine.objects.blocks;
 
 import mrthomas20121.tfcflux_core.objects.CreativeTabsTFCFlux;
 import mrthomas20121.tfcflux_machine.TfcFluxMachine;
+import mrthomas20121.tfcflux_machine.objects.blocks.tech.machine.BlockVaporisator;
 import mrthomas20121.tfcflux_machine.objects.blocks.tech.pump.BlockPump;
 import mrthomas20121.tfcflux_machine.objects.tiles.TilePump;
+import mrthomas20121.tfcflux_machine.objects.tiles.TileVaporisator;
 import net.dries007.tfc.objects.items.itemblock.ItemBlockTFC;
-import net.dries007.tfc.objects.te.TETickableBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -50,7 +50,9 @@ public class FluxBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
         blocks.add(register(r, new BlockPump(), "machine/pump"));
+        blocks.add(register(r, new BlockVaporisator(), "machine/vaporisator"));
         TileEntity.register("tfcflux_machine:pump", TilePump.class);
+        TileEntity.register("tfcflux_machine:vaporisator", TileVaporisator.class);
     }
 
     @SideOnly(Side.CLIENT)
